@@ -1,0 +1,31 @@
+main:                   addi x8,x0,4
+                        addi x9,x0,5
+                        add x18,x0,x0
+                        addi x10,x8,0
+                        addi x11,x9,0
+                        jal x1,suma
+						addi x18,x10,0
+						addi x10,x18,0
+                        jal x1,100
+suma:                   addi x2,x2,-20
+                        sw x8,16(sp)
+                        sw x9,12(sp)
+                        sw x18,8(sp)
+                        sw x19,4(sp)
+                        sw x1,0(sp)
+						add x8,x10,x0
+						add x9,x18,x0
+						addi x18,x0,0
+						addi x19,x8,1
+ for:					bgeu x18,x9,endfor
+						addi x19,x19,1
+			     		addi x18,x18,1
+			    		beq x0,x0,for
+ endfor:  				addi x10,x19,0
+                        lw x8,16(sp)
+                        lw x9,12(sp)
+                        lw x18,8(sp)
+                        lw x19,4(sp)
+                        lw x1,0(sp)
+                        addi x2,x2,20
+                        jalr x0,0(x1)
